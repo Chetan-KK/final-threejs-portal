@@ -4,6 +4,9 @@ import Sizes from './Utils/Sizes';
 import Time from './Utils/Time';
 import Renderer from './Renderer';
 import World from './World/World';
+import Resources from './Utils/Resources';
+import sources from './sources';
+import Debug from './Utils/Debug';
 
 let instance = null;
 
@@ -22,9 +25,13 @@ export default class Experience {
         //utils
         this.sizes = new Sizes();
         this.time = new Time();
+        this.debug = new Debug();
 
         //scene
         this.scene = new THREE.Scene();
+
+        //load resources
+        this.resources = new Resources(sources);
 
         //camera
         this.camera = new Camera();
@@ -32,7 +39,7 @@ export default class Experience {
         //renderer
         this.renderer = new Renderer();
 
-        //all
+        //everything
         this.world = new World();
 
         this.listenEvents();
