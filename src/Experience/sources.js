@@ -13,9 +13,14 @@ export default [
     //             'textures/environmentMap/nz.jpg'
     //         ]
     // },
-    // {
-    //     name: 'dirtColorTexture',
-    //     type: 'texture',
-    //     path: 'textures/dirt/color.jpg'
-    // },
+    {
+        name: 'portalModel',
+        type: 'gltfModel',
+        path: 'models/portalScene.glb'
+    },
+    {
+        name: 'portalTexture',
+        type: 'texture',
+        path: 'models/backed.jpg'
+    },
 ];

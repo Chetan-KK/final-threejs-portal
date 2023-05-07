@@ -1,5 +1,8 @@
 import * as THREE from 'three';
 import Experience from "../Experience";
+import Floor from './Floor';
+import Portal from './Portal';
+import Fireflies from './Fireflies';
 
 export default class World {
     constructor () {
@@ -8,26 +11,31 @@ export default class World {
         this.experience = new Experience();
         this.time = this.experience.time;
         this.debug = this.experience.debug;
+        this.isLoaded = false;
 
         //others
         this.scene = this.experience.scene;
         this.resources = this.experience.resources;
 
-        this.testBox();
-
         this.resources.on('ready', () => {
             this.loaded();
+            this.isLoaded = true;
         });
     }
 
     //laod after all resources are loaded    
     loaded() {
+        // this.floor = new Floor();
+        this.portal = new Portal();
+        this.fireflies = new Fireflies();
     }
-    testBox() {
-        this.box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial());
-        this.scene.add(this.box);
+    resize() {
+        this.fireflies.resize();
     }
     update() {
-        this.box.rotation.x = this.time.elapsed / 900;
+        if (this.isLoaded) {
+            this.fireflies.update();
+            this.portal.update();
+        }
     }
 }
